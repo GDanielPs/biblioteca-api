@@ -10,7 +10,7 @@ Fue creada con el objetivo de aplicar principios de desarrollo back-end, arquite
 ## 🏗️ Estructura del proyecto
 
 La API sigue una arquitectura **en capas (MVC)** que separa la lógica de negocio, la persistencia y el control de las peticiones HTTP.
-
+```
 biblioteca-api/
 │
 ├── src/
@@ -27,10 +27,7 @@ biblioteca-api/
 ├── mvnw / mvnw.cmd # Wrapper de Maven
 ├── README.md # Documentación principal
 └── README_SERVICIOS.md # Detalle de endpoints
-
-yaml
-Copiar código
-
+```
 ---
 
 ## ⚙️ Tecnologías utilizadas
