@@ -51,30 +51,28 @@ Copiar código
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/GDanielPs/biblioteca-api.git
-Ingresa al directorio:
+2. Ingresa al directorio:
 
-bash
-Copiar código
 cd biblioteca-api
-Ejecuta el proyecto:
 
-bash
-Copiar código
+3. Ejecuta el proyecto:
+
 ./mvnw spring-boot:run
-Accede desde tu navegador o Postman a:
 
-arduino
-Copiar código
+4. Accede desde tu navegador o Postman a:
+
 http://localhost:8080
 🧩 Endpoints principales
 Los endpoints de la API se documentan de forma detallada en el archivo README_SERVICIOS.md, pero a continuación se listan los más importantes:
 
-Método	Endpoint	Descripción
-GET	/api/libros	Obtener todos los libros
-GET	/api/libros/{id}	Buscar un libro por ID
-POST	/api/libros	Agregar un nuevo libro
-PUT	/api/libros/{id}	Actualizar un libro existente
-DELETE	/api/libros/{id}	Eliminar un libro
+|  Método  | Endpoint           | Descripción                   |
+| :------: | :----------------- | :---------------------------- |
+|   `GET`  | `/api/libros`      | Obtener todos los libros      |
+|   `GET`  | `/api/libros/{id}` | Buscar un libro por ID        |
+|  `POST`  | `/api/libros`      | Agregar un nuevo libro        |
+|   `PUT`  | `/api/libros/{id}` | Actualizar un libro existente |
+| `DELETE` | `/api/libros/{id}` | Eliminar un libro             |
+
 
 🧠 Arquitectura y buenas prácticas
 Este proyecto implementa:
@@ -94,8 +92,6 @@ Se incluyen pruebas básicas en BibliotecaApiApplicationTests.java para verifica
 
 Ejecuta las pruebas con:
 
-bash
-Copiar código
 ./mvnw test
 👨‍💻 Autor
 Germán Daniel Patiño Sáenz
