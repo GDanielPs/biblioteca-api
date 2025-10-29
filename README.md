@@ -51,7 +51,9 @@ biblioteca-api/
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/GDanielPs/biblioteca-api.git
-````
+   ````
+
+----
 
 2. Entra a la carpeta del proyecto:
 
