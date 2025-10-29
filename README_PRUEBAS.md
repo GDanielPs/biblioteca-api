@@ -86,9 +86,3 @@ El proyecto cumple con los criterios de calidad, modularidad y documentación es
 
 ---
 
-¿Quieres que te lo deje listo como **archivo `.md` descargable** (para subirlo a tu repositorio también)?
-Así quedaría todo empacado:
-📁 `README.md`
-📁 `README_SERVICIOS.md`
-📁 `README_REPOSITORIO.md`
-📁 `README_PRUEBAS.md` ✅
