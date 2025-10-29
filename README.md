@@ -1,143 +1,156 @@
+# 📚 Biblioteca API
 
-### 🧩 **README_SERVICIOS.md**
-
-#### Proyecto: API RESTful para la gestión de una biblioteca
-
-#### Tecnología: Spring Boot (Java)
-
----
-
-## 📌 **Descripción general**
-
-Este módulo corresponde al desarrollo de los **servicios web** del sistema de gestión de una biblioteca.
-El objetivo es permitir la **gestión de libros** (registro, consulta, actualización y eliminación) mediante una **API RESTful** desarrollada con **Spring Boot**, siguiendo las buenas prácticas de calidad, seguridad y documentación.
+## 🧾 Descripción
+Este proyecto implementa una **API RESTful para la gestión de una biblioteca**, permitiendo registrar, consultar, actualizar y eliminar información sobre libros y usuarios.  
+Su propósito es aplicar conceptos de **arquitectura back-end, desarrollo estructurado, pruebas unitarias e integración continua**, siguiendo buenas prácticas de programación.
 
 ---
 
-## ⚙️ **Framework utilizado**
-
-* **Spring Boot 3.x**
-* **Maven** como gestor de dependencias.
-* **Spring Web** para la construcción de la API.
-* **Spring Validation** para validación de datos.
-* **Springdoc OpenAPI (Swagger UI)** para documentación interactiva.
-* **Spring Boot DevTools** para recarga automática en desarrollo.
+## ⚙️ Tecnologías utilizadas
+- **Java / Spring Boot**
+- **Maven** para la gestión de dependencias
+- **MySQL** como base de datos relacional
+- **Postman** para pruebas de endpoints
+- **Git & GitHub** para control de versiones y repositorio remoto
 
 ---
 
-## 🧱 **Estructura del proyecto**
+## 🏗️ Arquitectura del proyecto
+El sistema se organiza siguiendo el patrón **MVC (Modelo - Vista - Controlador)**, garantizando una separación clara entre la lógica de negocio, los controladores y la persistencia de datos.
 
 ```
-src/
- ├── main/
- │   ├── java/com/biblioteca/app/
- │   │   ├── controller/       # Controladores REST
- │   │   ├── model/            # Clases de entidad (Libro)
- │   │   ├── repository/       # Interfaces de persistencia (en memoria o BD)
- │   │   └── service/          # Lógica de negocio
- │   └── resources/
- │       └── application.properties  # Configuración de la app
- └── test/                     # Pruebas unitarias (opcional)
-```
+
+biblioteca-api/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/biblioteca/
+│   │   │   ├── controller/   -> Manejo de endpoints y peticiones HTTP
+│   │   │   ├── model/        -> Clases del dominio (Libro, Usuario, etc.)
+│   │   │   ├── service/      -> Lógica de negocio
+│   │   │   └── repository/   -> Acceso a datos
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/                 -> Pruebas unitarias
+│
+├── README.md
+└── pom.xml
+
+````
 
 ---
 
-## 📡 **Endpoints implementados**
+## 🚀 Ejecución del proyecto
 
-|  Método  | Endpoint       | Descripción                           | Ejemplo de uso     |
-| :------: | :------------- | :------------------------------------ | :----------------- |
-|   `GET`  | `/libros`      | Obtiene todos los libros registrados. | `GET /libros`      |
-|   `GET`  | `/libros/{id}` | Consulta un libro por su ID.          | `GET /libros/1`    |
-|  `POST`  | `/libros`      | Registra un nuevo libro.              | `POST /libros`     |
-|   `PUT`  | `/libros/{id}` | Actualiza un libro existente.         | `PUT /libros/1`    |
-| `DELETE` | `/libros/{id}` | Elimina un libro del sistema.         | `DELETE /libros/1` |
+### 🧩 Requisitos previos
+- **Java 17** o superior
+- **Maven**
+- **MySQL** o base de datos configurada
 
----
+### ▶️ Pasos para ejecutar
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/GDanielPs/biblioteca-api.git
+````
 
-## 🧾 **Ejemplo de JSON (para POST y PUT)**
+2. Entra a la carpeta del proyecto:
 
-```json
-{
-  "titulo": "Cien años de soledad",
-  "autor": "Gabriel García Márquez",
-  "anioPublicacion": 1967,
-  "genero": "Realismo mágico",
-  "disponible": true
-}
-```
+   ```bash
+   cd biblioteca-api
+   ```
+3. Compila y ejecuta el proyecto:
 
----
+   ```bash
+   mvn spring-boot:run
+   ```
+4. La API estará disponible en:
 
-## 🔐 **Validación de datos**
-
-El sistema valida automáticamente los datos de entrada utilizando **anotaciones de validación** de `jakarta.validation`, tales como:
-
-```java
-@NotBlank(message = "El título es obligatorio")
-@Size(max = 100, message = "El título no puede superar los 100 caracteres")
-```
-
-Esto evita que se registren libros con campos vacíos o incorrectos.
+   ```
+   http://localhost:8080
+   ```
 
 ---
 
-## 🧰 **Manejo de errores**
+## 📍 Endpoints principales
 
-El proyecto incluye un controlador global de excepciones (`GlobalExceptionHandler`) que devuelve respuestas con estructura estándar.
+| Método   | Endpoint           | Descripción                          |
+| -------- | ------------------ | ------------------------------------ |
+| `GET`    | `/api/libros`      | Lista todos los libros               |
+| `GET`    | `/api/libros/{id}` | Consulta un libro por su ID          |
+| `POST`   | `/api/libros`      | Agrega un nuevo libro                |
+| `PUT`    | `/api/libros/{id}` | Actualiza la información de un libro |
+| `DELETE` | `/api/libros/{id}` | Elimina un libro                     |
+
+*(Los nombres pueden variar según la configuración del proyecto)*
+
+---
+
+## 🧪 Pruebas y validación
+
+Se desarrollaron **pruebas unitarias y de integración** para garantizar el correcto funcionamiento de los servicios y endpoints.
+Estas pruebas validan:
+
+* La correcta creación, consulta y eliminación de libros.
+* El manejo de errores y respuestas HTTP.
+* La conexión con la base de datos y servicios asociados.
+
+Las pruebas se ejecutan utilizando **JUnit** y **Spring Boot Test**, con integración en el pipeline de **GitHub Actions**.
+
 Ejemplo:
 
-```json
-{
-  "timestamp": "2025-10-27T18:00:00",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "El campo 'autor' no puede estar vacío",
-  "path": "/libros"
-}
+```bash
+mvn test
 ```
 
 ---
 
-## 🔑 **Autenticación básica (opcional)**
+## 🧰 Integración continua (CI)
 
-Para aumentar la seguridad, se puede habilitar autenticación básica con **Spring Security**, restringiendo las operaciones `POST`, `PUT` y `DELETE` solo a usuarios autenticados.
-Esto se puede configurar fácilmente más adelante si se requiere.
+El proyecto implementa un flujo de CI en **GitHub Actions** para automatizar las siguientes tareas:
 
----
+* Compilación del código.
+* Ejecución de pruebas.
+* Validación de la estructura y dependencias.
 
-## 📘 **Documentación de la API**
-
-La documentación automática se genera gracias a **Springdoc OpenAPI**.
-Una vez ejecutada la aplicación, puedes acceder a:
-
-🔗 **Swagger UI:**
-[`http://localhost:8080/swagger-ui.html`](http://localhost:8080/swagger-ui.html)
-
-Desde ahí se pueden probar todos los endpoints con ejemplos de datos.
+Archivo de configuración: `.github/workflows/ci.yml`
 
 ---
 
-## 🚀 **Ejecución del proyecto**
+## 📘 Documentación y despliegue
 
-1. Abrir el proyecto en IntelliJ IDEA o NetBeans.
-2. Ejecutar la clase principal `BibliotecaApplication.java`.
-3. Verificar que el servidor se inicia en:
-   👉 `http://localhost:8080`
-4. Probar los endpoints desde:
+### 📗 Guía de usuario
 
-    * Postman
-    * Navegador
-    * Swagger UI
+* Ejecutar el servidor con `mvn spring-boot:run`.
+* Acceder a los endpoints mediante Postman o navegador.
+* Utilizar los métodos HTTP adecuados según la operación.
+
+### ⚙️ Guía de despliegue
+
+1. Configura la base de datos en el archivo `application.properties`.
+2. Asegúrate de que el puerto 8080 esté libre.
+3. Ejecuta la aplicación y verifica los logs de inicialización.
 
 ---
 
-## 🧩 **Buenas prácticas aplicadas**
+## 🧩 Diagrama de arquitectura
 
-* Separación por capas: **Controller**, **Service**, **Repository**.
-* Validación de datos antes de guardar.
-* Manejo global de excepciones.
-* Documentación OpenAPI.
-* Uso de DTOs (si se extiende el proyecto).
-* Código limpio y comentado.
+```
+[Cliente REST] ⇄ [Controlador] ⇄ [Servicio] ⇄ [Repositorio] ⇄ [Base de Datos]
+```
 
+El flujo permite gestionar la comunicación desde la petición HTTP hasta la persistencia de datos, siguiendo una arquitectura modular y escalable.
 
+---
+
+## 👨‍💻 Autor
+
+**Germán Daniel Patiño Sáenz**
+Estudiante de Ingeniería de Software
+
+---
+
+## 🏁 Estado del proyecto
+
+✅ Completado — incluye arquitectura, pruebas, integración continua y documentación final.
+
+---
